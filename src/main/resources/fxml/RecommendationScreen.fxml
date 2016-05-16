@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mycompany.songbitmaven.RecommendationController">
+  <children>
+    <Button id="goToSearchButton" fx:id="goToSearch" layoutX="259.0" layoutY="164.0" mnemonicParsing="false" onAction="#goToSearch" text="Search Screen" />
+    <Label layoutX="208.0" layoutY="24.0" prefHeight="77.0" prefWidth="184.0" text="RECOMMENDATION PAGE" textAlignment="CENTER">
+      <font>
+        <Font name="Arial Black" size="12.0" />
+      </font>
+    </Label>
+    <Button fx:id="goToSettings" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
+    <Button fx:id="goToPlayingSong" layoutX="364.0" layoutY="185.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
+    <Button fx:id="goToFavorites" layoutX="286.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
+  </children>
+</AnchorPane>

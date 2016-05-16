@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mycompany.songbitmaven.SettingsController">
+  <children>
+    <Button fx:id="goToRecommend" layoutX="203.0" layoutY="104.0" mnemonicParsing="false" onAction="#goToRecommend" text="Recommend" />
+    <Button fx:id="goToPlayingSong" layoutX="315.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
+    <Button fx:id="goToSearch" layoutX="231.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToSearch" text="Search" />
+    <Button fx:id="goToFavorites" layoutX="316.0" layoutY="225.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
+    <Label layoutX="272.0" layoutY="41.0" text="Settings" />
+  </children>
+</AnchorPane>
