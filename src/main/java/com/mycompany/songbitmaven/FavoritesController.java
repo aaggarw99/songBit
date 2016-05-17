@@ -17,14 +17,14 @@ import javafx.scene.control.*;
  *
  * @author Ashwin
  */
-public class FavoritesController{
+public class FavoritesController implements Initializable, ControlledScreen{
     ScreensController myController;
     public Button goToSearch;
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong;
 
-    /*@Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
@@ -57,7 +57,7 @@ public class FavoritesController{
     @Override
     public void goToSettings(ActionEvent e) {
         myController.setScreen(MainApp.SETTINGS);
-    }*/
+    }
     
     
 }
