@@ -18,40 +18,34 @@ import javafx.stage.Stage;
  */
 public class SceneController {
     
-    private Stage stage;
-    private HashMap<String, String> sceneFiles = new HashMap<>();
-    
-    private static SceneController singleton;
+    public static Stage stage;
+    public static HashMap<String, String> sceneFiles = new HashMap<>();
     
     public static void initialize(Stage stage){
-        SceneController.singleton = new SceneController(stage);
-    }
-    
-    public static SceneController getSingleton(){
-        return SceneController.singleton;
-    }
-    
-    public SceneController(Stage stage) {
-        this.stage = stage;
+        SceneController.stage = stage;
         
         sceneFiles.put("search", "SearchScreen.fxml");
         sceneFiles.put("settings", "Settings.fxml");
         sceneFiles.put("songboard", "Songboard.fxml");
         sceneFiles.put("login", "Login.fxml");
         sceneFiles.put("recommendation", "RecommendationScreen.fxml");
-        sceneFiles.put("playing", "RecommendationScreen.fxml");
-        sceneFiles.put("recommendation", "PlayingSong.fxml");
+        sceneFiles.put("playing", "PlayingSong.fxml");
         sceneFiles.put("favorites", "Favorites.fxml");
     }
     
-    public void setScene(String sceneName){
+    public static void setScene(String sceneName){
         Parent root = null;
+        String filename = "/fxml/" + sceneFiles.get(sceneName);
+        System.out.println(filename);
+        System.out.println(SceneController.class.getResource(filename));
         try{
-            root = FXMLLoader.load(getClass().getResource("/fxml/" + sceneFiles.get(sceneName)));
+            root = FXMLLoader.load(SceneController.class.getResource(filename));
         }
         catch(IOException e){
             System.out.println(e.getMessage());
         }
+        System.out.println(root);
+        
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");

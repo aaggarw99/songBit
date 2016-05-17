@@ -16,14 +16,14 @@ import javafx.scene.control.*;
  *
  * @author Ashwin
  */
-public class SearchController {
+public class SearchController implements Initializable, ControlledScreen {
     ScreensController myController;
     public Button goToFavorites;
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong;
 
-    /*@Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
@@ -57,6 +57,6 @@ public class SearchController {
     @Override
     public void goToSettings(ActionEvent e) {
         myController.setScreen(MainApp.SETTINGS);
-    }*/
+    }
     
 }

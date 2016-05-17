@@ -6,6 +6,7 @@
 package com.mycompany.songbitmaven;
 
 import java.io.IOException;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -17,12 +18,50 @@ import javafx.stage.Stage;
  *
  * @author Ashwin
  */
-public class MainApp extends Application{
+public class MainApp extends Application{    
+    
+    public static final String SEARCH_SCREEN = "SearchController";
+    public static final String SEARCH_SCREEN_FXML = "/fxml/SearchScreen.fxml";
+    public static final String SETTINGS = "SettingsController";
+    public static final String SETTINGS_FXML = "/fxml/Settings.fxml";
+    /*public static final String SONGBOARD = "songboard";
+    public static final String SONGBOARD_FXML = "/fxml/songboard.fxml";
+    public static final String LOGIN = "login";
+    public static final String LOGIN_FXML = "/fxml/login.fxml";*/
+    public static final String RECOMENDATION = "RecommendationController";
+    public static final String RECOMENDATION_FXML = "/fxml/RecommendationScreen.fxml";
+    /*public static final String REC_LIST = "rec_list";
+    public static final String REC_LIST_FXML = "Rec_list_fxml";*/
+    public static final String PLAYING_SONG = "PlayingSongController";
+    public static final String PLAYING_SONG_FXML = "/fxml/PlayingSong.fxml";
+    public static final String FAVORITES = "FavoritesController";
+    public static final String FAVORITES_FXML = "/fxml/Favorites.fxml";
     
     @Override
     public void start(Stage stage) throws IOException{
-        SceneController sceneController = new SceneController(stage);
-        sceneController.setScene("recommendation");
+        
+        ScreensController mainContainer = new ScreensController();
+        mainContainer.loadScreen(MainApp.RECOMENDATION, MainApp.RECOMENDATION_FXML);
+        mainContainer.loadScreen(MainApp.SEARCH_SCREEN, MainApp.SEARCH_SCREEN_FXML);
+        
+        mainContainer.loadScreen(MainApp.SETTINGS, MainApp.SETTINGS_FXML);
+        mainContainer.loadScreen(MainApp.PLAYING_SONG, MainApp.PLAYING_SONG_FXML);
+        mainContainer.loadScreen(MainApp.FAVORITES, MainApp.FAVORITES_FXML);
+        
+        /* add in second MVP -- addition of the fxml files and respective controllers
+        mainContainer.loadScreen(MainApp.SONGBOARD, MainApp.SONGBOARD_FXML);
+        mainContainer.loadScreen(MainApp.LOGIN, MainApp.LOGIN_FXML);
+        mainContainer.loadScreen(MainApp.REC_LIST, MainApp.REC_LIST);
+        
+        */
+        
+        mainContainer.setScreen(MainApp.RECOMENDATION);
+        
+        Group root = new Group(); 
+        root.getChildren().addAll(mainContainer); 
+        Scene scene = new Scene(root); 
+        stage.setScene(scene); 
+        stage.show();
     }
     
     public static void main(String[] args) {
