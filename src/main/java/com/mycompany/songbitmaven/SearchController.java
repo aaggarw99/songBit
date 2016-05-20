@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import java.util.Scanner;
 import com.google.gson.*;
+import java.util.Arrays;
 
 /**
  *
@@ -113,6 +114,9 @@ public class SearchController implements Initializable, ControlledScreen {
             Gson gson = new Gson();
             
             System.out.println(jsonURL);
+            SongDataSet dataset = gson.fromJson(str, SongDataSet.class);
+            
+            System.out.println(Arrays.toString(dataset.getNames()));
            
         } catch (Exception e) {
             System.out.println("Something went wrong!" + e.getMessage());
