@@ -5,6 +5,7 @@
  */
 package com.mycompany.songbitmaven;
 
+import com.wrapper.spotify.models.Track;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ public class PlayingSongController implements Initializable, ControlledScreen{
     public Button goToSearch;
     public Button goToSettings;
     public Button goToFavorites;
+    public static Track currentSong;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,4 +58,7 @@ public class PlayingSongController implements Initializable, ControlledScreen{
         myController.setScreen(MainApp.SETTINGS);
     }
     
+    public static void setSong(Track track){
+        currentSong = track;
+    }
 }

@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import java.util.Scanner;
+import com.google.gson.*;
 
 /**
  *
@@ -27,8 +29,8 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button goToFavorites;
     public Button goToRecommend;
     public Button goToSettings;
-    public Button goToPlayingSong;
-
+    public Button goToPlayingSong; 
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -75,17 +77,47 @@ public class SearchController implements Initializable, ControlledScreen {
     
     @FXML
     public void handleSearchBar(){
+        String jsonURL;
         String text = searchScreen.getText();
         
         Api api = Api.DEFAULT_API; 
-        final TrackRequest request = api.getTrack(text).build();
+        final TrackSearchRequest request = api.searchTracks(text).market("US").build();
 
         try {
-           final Track track = request.get();
-           searchResult.setText(track.getName());
+            final Page<Track> trackSearchResult = request.get();
+            jsonURL = trackSearchResult.getNext();
+           
+            URL myurl = null;
+            try {
+                myurl = new URL(jsonURL);
+            } catch (Exception e) {
+                System.out.println("Improper URL " + jsonURL);
+                System.exit(-1);
+            }
+
+            // read from the URL
+            Scanner scan = null;
+            try {
+                scan = new Scanner(myurl.openStream());
+            } catch (Exception e) {
+                System.out.println("Could not connect to " + jsonURL);
+                System.exit(-1);
+            }
+
+            String str = new String();
+            while (scan.hasNext()) {
+                str += scan.nextLine() + "\n";
+            }
+            scan.close();
+
+            Gson gson = new Gson();
+            
+            System.out.println(jsonURL);
+           
         } catch (Exception e) {
-           System.out.println("Something went wrong!" + e.getMessage());
-        }            
+            System.out.println("Something went wrong!" + e.getMessage());
+        }        
+        
     }
     
 }
