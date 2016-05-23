@@ -31,6 +31,7 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong; 
+    public Button addToFavorites;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,7 +75,7 @@ public class SearchController implements Initializable, ControlledScreen {
     public TextField searchScreen;
     
     @FXML
-    public Text searchResult;
+    public Label searchResult;
     
     @FXML
     public void handleSearchBar(){
@@ -121,6 +122,7 @@ public class SearchController implements Initializable, ControlledScreen {
             String firstResult = dataset.getNames()[0];
             
             searchResult.setText(firstResult);
+
         } catch (Exception e) {
             System.out.println("Something went wrong!" + e.getMessage());
         }        

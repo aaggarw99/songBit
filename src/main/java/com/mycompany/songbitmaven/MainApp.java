@@ -56,7 +56,7 @@ public class MainApp extends Application{
         */
         
         mainContainer.setScreen(MainApp.RECOMENDATION);
-        
+        stage.setTitle("songBit");
         Group root = new Group(); 
         root.getChildren().addAll(mainContainer); 
         Scene scene = new Scene(root); 
