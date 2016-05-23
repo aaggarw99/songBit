@@ -6,7 +6,6 @@
 package com.mycompany.songbitmaven;
 
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.methods.TrackRequest;
 import com.wrapper.spotify.methods.TrackSearchRequest;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.Track;
@@ -16,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import java.util.Scanner;
 import com.google.gson.*;
 import java.util.Arrays;
