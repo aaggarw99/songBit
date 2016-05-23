@@ -31,6 +31,8 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong; 
+    public Button addToFavorites;
+    public Label searchedSong;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,7 +119,8 @@ public class SearchController implements Initializable, ControlledScreen {
             SongDataSet dataset = gson.fromJson(str, SongDataSet.class);
             
             System.out.println(Arrays.toString(dataset.getNames()));
-           
+            String returnedSong = dataset.getNames()[0];
+            searchedSong.setText(returnedSong);
         } catch (Exception e) {
             System.out.println("Something went wrong!" + e.getMessage());
         }        
