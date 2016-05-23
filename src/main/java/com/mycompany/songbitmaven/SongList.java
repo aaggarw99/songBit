@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.songbitmaven;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author csstudent
+ */
+public class SongList {
+    private SongInfo[] items;
+    
+    public String[] getNames(){
+        String[] fullReturn = new String[items.length];
+        for(int i=0; i<items.length; i++){
+            fullReturn[i] = items[i].getName();
+        }
+        return fullReturn;
+    }
+    
+    public String[] getAlbumNames(){
+        String[] fullReturn = new String[items.length];
+        for(int i=0; i<items.length; i++){
+            fullReturn[i] = items[i].getAlbumName();
+        }
+        return fullReturn;
+    }
+    
+    @SuppressWarnings("empty-statement")
+    public ArrayList<String[]> getArtistNames(){
+        ArrayList<String[]> fullReturn = new ArrayList<>();
+        for(int i=0; i<items.length; i++){
+            fullReturn.add(items[i].getArtistNames());
+        }
+        return fullReturn;
+    }
+    
+}
