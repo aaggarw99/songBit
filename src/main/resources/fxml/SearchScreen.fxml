@@ -19,6 +19,6 @@
     <Button fx:id="goToSettings" layoutX="135.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
     <Button fx:id="goToPlayingSong" layoutX="347.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
     <Button fx:id="goToFavorites" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
-      <Text layoutX="428.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="53.2978515625" />
+      <Text fx:id="searchResult" layoutX="428.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="returned song:" wrappingWidth="82.2978515625" />
   </children>
 </AnchorPane>

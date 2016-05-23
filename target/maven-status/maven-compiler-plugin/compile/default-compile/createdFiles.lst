@@ -7,6 +7,7 @@ com/mycompany/songbitmaven/MainApp.class
 com/mycompany/songbitmaven/ScreensController.class
 com/mycompany/songbitmaven/SearchController.class
 com/mycompany/songbitmaven/SongAlbumInfo.class
+com/mycompany/songbitmaven/Singleton.class
 com/mycompany/songbitmaven/SongList.class
 com/mycompany/songbitmaven/FavoritesController.class
 com/mycompany/songbitmaven/SongInfo.class

@@ -118,6 +118,9 @@ public class SearchController implements Initializable, ControlledScreen {
             
             System.out.println(Arrays.toString(dataset.getNames()));
            
+            String firstResult = dataset.getNames()[0];
+            
+            searchResult.setText(firstResult);
         } catch (Exception e) {
             System.out.println("Something went wrong!" + e.getMessage());
         }        
