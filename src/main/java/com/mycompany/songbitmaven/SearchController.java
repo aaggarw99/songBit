@@ -30,6 +30,7 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button goToSettings;
     public Button goToPlayingSong; 
     public Button addToFavorites;
+    private SongDataSet dataset;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,6 +74,9 @@ public class SearchController implements Initializable, ControlledScreen {
     public TextField searchScreen;
     
     @FXML
+    public Button addFavorite;
+    
+    @FXML
     public Label searchResult;
     
     @FXML
@@ -113,7 +117,7 @@ public class SearchController implements Initializable, ControlledScreen {
             Gson gson = new Gson();
             
             System.out.println(jsonURL);
-            SongDataSet dataset = gson.fromJson(str, SongDataSet.class);
+            dataset = gson.fromJson(str, SongDataSet.class);
             
             System.out.println(Arrays.toString(dataset.getNames()));
            
@@ -125,6 +129,12 @@ public class SearchController implements Initializable, ControlledScreen {
             System.out.println("Something went wrong!" + e.getMessage());
         }        
         
+    }
+    
+    @FXML
+    public void handleAddFavorite(){
+        Singleton.addToFavorites(dataset.getNames()[0]);
+        System.out.println(Singleton.getFavorites().get(0));
     }
     
 }

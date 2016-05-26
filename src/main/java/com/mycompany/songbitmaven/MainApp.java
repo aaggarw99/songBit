@@ -64,6 +64,11 @@ public class MainApp extends Application{
         stage.show();
     }
     
+    @Override
+    public void stop(){
+        Singleton.save();
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }
