@@ -2,7 +2,11 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+
+API key	d8dec72bb448436493edcb1dec93e22d
+Shared secret	40abfbba99d7aa8b44730b26a8eb244b
  */
+
 package com.mycompany.songbitmaven;
 
 import java.io.IOException;

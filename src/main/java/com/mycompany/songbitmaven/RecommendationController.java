@@ -5,7 +5,13 @@
  */
 package com.mycompany.songbitmaven;
 
+import de.umass.lastfm.Artist;
+import de.umass.lastfm.Chart;
+import de.umass.lastfm.PaginatedResult;
+import de.umass.lastfm.Track;
+import de.umass.lastfm.User;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +25,11 @@ import javafx.scene.control.*;
  */
 public class RecommendationController implements Initializable, ControlledScreen {
     ScreensController myController;
+    public ArrayList<String> artist = new ArrayList<String>();
+    public ArrayList<String> name = new ArrayList<String>();
+    public ArrayList<String> numListens = new ArrayList<String>();
+    public String key = "d8dec72bb448436493edcb1dec93e22d";
+    public String user;
     public Button goToSearch;
     public Button goToFavorites;
     public Button goToSettings;
@@ -58,4 +69,24 @@ public class RecommendationController implements Initializable, ControlledScreen
         myController.setScreen(MainApp.SETTINGS);
     }
     
+    @FXML
+    public TextField login;
+    
+    @FXML
+    public void handleLogin(){
+        try{
+            user = login.getText();
+        } catch(Exception e){
+            System.out.println("Something went wrong!" + e.getMessage());
+        }
+    }
+    
+    @FXML
+    public Button recommend;
+    
+    @FXML
+    public void handleRecommend(){
+        PaginatedResult<Track> recentTracks = User.getRecentTracks(user, key);
+        System.out.println(recentTracks.getPageResults());
+    }
 }

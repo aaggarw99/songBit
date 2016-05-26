@@ -36,6 +36,10 @@ public class Singleton implements Serializable{
         return favorites;
     }
     
+    protected void resetFavorites(){
+        favorites = new ArrayList<String>();
+    }
+    
     protected void addToFavorites(String s){
         favorites.add(s);
     }

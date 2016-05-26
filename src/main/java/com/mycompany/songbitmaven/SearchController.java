@@ -133,8 +133,16 @@ public class SearchController implements Initializable, ControlledScreen {
     
     @FXML
     public void handleAddFavorite(){
-        Singleton.addToFavorites(dataset.getNames()[0]);
-        System.out.println(Singleton.getFavorites().get(0));
+        Singleton.getInstance().addToFavorites(dataset.getNames()[0]);
+        System.out.println(Singleton.getInstance().getFavorites().get(0));
+    }
+    
+    @FXML
+    public Button clear;
+    
+    @FXML
+    public void handleClear(){
+        Singleton.getInstance().resetFavorites();
     }
     
 }
