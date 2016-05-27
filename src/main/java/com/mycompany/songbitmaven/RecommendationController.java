@@ -75,7 +75,7 @@ public class RecommendationController implements Initializable, ControlledScreen
     @FXML
     public void handleLogin(){
         try{
-            user = login.getText();
+            handleRecommend();
         } catch(Exception e){
             System.out.println("Something went wrong!" + e.getMessage());
         }
@@ -86,7 +86,11 @@ public class RecommendationController implements Initializable, ControlledScreen
     
     @FXML
     public void handleRecommend(){
+        user = login.getText();
         PaginatedResult<Track> recentTracks = User.getRecentTracks(user, key);
-        System.out.println(recentTracks.getPageResults());
+        for(Track t : recentTracks){
+            System.out.println(t.getArtist());
+            System.out.println(t.getName());
+        }
     }
 }
