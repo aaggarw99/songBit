@@ -30,6 +30,14 @@ public class SongList {
         return fullReturn;
     }
     
+    public String[] getIDs(){
+        String[] fullReturn = new String[items.length];
+        for(int i=0; i<items.length; i++){
+            fullReturn[i] = items[i].getID();
+        }
+        return fullReturn;
+    }
+    
     @SuppressWarnings("empty-statement")
     public ArrayList<String[]> getArtistNames(){
         ArrayList<String[]> fullReturn = new ArrayList<>();

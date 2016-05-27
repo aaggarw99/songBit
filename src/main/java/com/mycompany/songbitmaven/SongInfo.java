@@ -20,6 +20,10 @@ public class SongInfo {
     
     }
     
+    public String getID(){
+        return this.id;
+    }
+    
     public String getName(){
         return this.name;
     }

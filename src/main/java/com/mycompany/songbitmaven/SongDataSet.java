@@ -22,6 +22,10 @@ public class SongDataSet {
         return tracks.getAlbumNames();
     }
     
+    public String[] getIDs(){
+        return tracks.getIDs();
+    }
+    
     public ArrayList<String[]> getArtistNames(){
         return tracks.getArtistNames();
     }
