@@ -23,7 +23,7 @@
     <Button fx:id="goToSettings" layoutX="135.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
     <Button fx:id="goToPlayingSong" layoutX="347.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
     <Button fx:id="goToFavorites" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
-    <Text fx:id="searchResult" layoutX="428.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="returned song:" wrappingWidth="82.2978515625" />
     <Button layoutX="405.0" layoutY="133.0" mnemonicParsing="false" text="Add to Favorite" />
+    <Label fx:id="searchResult" layoutX="266.0" layoutY="128.0" prefHeight="21.0" text="" />
   </children>
 </AnchorPane>

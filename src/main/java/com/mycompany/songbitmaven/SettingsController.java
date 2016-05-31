@@ -16,7 +16,7 @@ import javafx.scene.control.*;
  *
  * @author Ashwin
  */
-public class SettingsController implements Initializable, ControlledScreen{
+public class SettingsController implements ControlledScreen, Initializable{
     ScreensController myController;
     public Button goToRecommend;
     public Button goToSearch;

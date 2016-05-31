@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/PlayingSongController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/ControlledScreen.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/RecommendationController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SongArtistInfo.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/Singleton.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SongDataSet.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SceneController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SettingsController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SongInfo.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/FavoritesController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/ScreensController.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SongAlbumInfo.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SongList.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/MainApp.java
-/Users/csstudent/NetBeansProjects/songBitMaven/src/main/java/com/mycompany/songbitmaven/SearchController.java
-=======
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\MainApp.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SearchController.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SongInfo.java
@@ -27,6 +10,6 @@ C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\s
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SongArtistInfo.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SongList.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\FavoritesController.java
+C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\Singleton.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SongDataSet.java
 C:\Users\Ashwin\Documents\NetBeansProjects\songBit\src\main\java\com\mycompany\songbitmaven\SongAlbumInfo.java
->>>>>>> ac4dcd0bde7539d9354bcd2e2aeffc4f3a5ce240

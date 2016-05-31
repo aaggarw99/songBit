@@ -8,10 +8,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mycompany.songbitmaven.FavoritesController">
   <children>
-    <Button fx:id="goToSettings" layoutX="84.0" layoutY="190.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
-    <Button fx:id="goToRecommend" layoutX="158.0" layoutY="118.0" mnemonicParsing="false" onAction="#goToRecommend" text="Recommendations" />
-    <Button fx:id="goToPlayingSong" layoutX="292.0" layoutY="208.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
-    <Button fx:id="goToSearch" layoutX="314.0" layoutY="149.0" mnemonicParsing="false" onAction="#goToSearch" text="Search" />
+    <Button fx:id="goToSettings" layoutX="58.0" layoutY="190.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
+    <Button fx:id="goToRecommend" layoutX="57.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToRecommend" text="Recommendations" />
+    <Button fx:id="goToPlayingSong" layoutX="31.0" layoutY="253.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
+    <Button fx:id="goToSearch" layoutX="61.0" layoutY="149.0" mnemonicParsing="false" onAction="#goToSearch" text="Search" />
     <Label layoutX="176.0" layoutY="68.0" text="Favorites" />
+    <TableView id="favoritesTable" fx:id="table" layoutX="240.0" layoutY="78.0" prefHeight="267.0" prefWidth="305.0" />
+    <Button fx:id="refresh" layoutX="489.0" layoutY="48.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
   </children>
 </AnchorPane>

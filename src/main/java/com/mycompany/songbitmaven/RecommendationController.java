@@ -17,7 +17,7 @@ import javafx.scene.control.*;
  * each one of these controllers should have @FXML methods to go from screen to screen
  * @author Ashwin
  */
-public class RecommendationController implements Initializable, ControlledScreen {
+public class RecommendationController implements ControlledScreen, Initializable {
     ScreensController myController;
     public Button goToSearch;
     public Button goToFavorites;

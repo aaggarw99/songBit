@@ -5,6 +5,8 @@
  */
 package com.mycompany.songbitmaven;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author csstudent
@@ -17,7 +19,8 @@ public class SongInfo {
     private String id;
     
     public SongInfo(String n, String alb, String art){
-    
+        name = n;
+        
     }
     
     public String getName(){

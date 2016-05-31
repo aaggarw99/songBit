@@ -19,13 +19,16 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import java.util.Scanner;
 import com.google.gson.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 
 /**
  *
  * @author Ashwin
  */
-public class SearchController implements Initializable, ControlledScreen {
+public class SearchController implements ControlledScreen, Initializable {
     ScreensController myController;
     public Button goToFavorites;
     public Button goToRecommend;
@@ -33,38 +36,39 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button goToPlayingSong; 
     public Button addToFavorites;
     
-    @Override
+ 
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    @Override
+  
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }
 
-    @Override
+    
     public void goToSearch(ActionEvent e) {
         myController.setScreen(MainApp.SEARCH_SCREEN);
     }
 
-    @Override
+ 
     public void goToRecommend(ActionEvent e) {
         myController.setScreen(MainApp.RECOMENDATION);
     }
 
-    @Override
+    
     public void goToFavorites(ActionEvent e) {
+        
         myController.setScreen(MainApp.FAVORITES);
     }
 
-    @Override
+    
     public void goToPlayingSong(ActionEvent e) {  
         myController.setScreen(MainApp.PLAYING_SONG);
     }
     
     
 
-    @Override
+    
     public void goToSettings(ActionEvent e) {
         myController.setScreen(MainApp.SETTINGS);
     }

@@ -5,19 +5,30 @@
  */
 package com.mycompany.songbitmaven;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.event.ActionEvent;
-
+import javafx.scene.control.TableColumn;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 /**
  *
  * @author Ashwin
  */
 public interface ControlledScreen {
-    public void setScreenParent(ScreensController screenPage);
-    public void goToSearch(ActionEvent e);
-    public void goToRecommend(ActionEvent e);
+    public abstract void setScreenParent(ScreensController screenPage);
+    public abstract void goToSearch(ActionEvent e);
+    public abstract void goToRecommend(ActionEvent e);
     public void goToFavorites(ActionEvent e);
-    public void goToPlayingSong(ActionEvent e);
-    public void goToSettings(ActionEvent e);
+    public abstract void goToPlayingSong(ActionEvent e);
+    public abstract void goToSettings(ActionEvent e);
     
     
 }
