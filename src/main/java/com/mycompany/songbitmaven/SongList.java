@@ -38,6 +38,10 @@ public class SongList {
         return fullReturn;
     }
     
+    public SongInfo[] getInfo(){
+        return items;
+    }
+    
     @SuppressWarnings("empty-statement")
     public ArrayList<String[]> getArtistNames(){
         ArrayList<String[]> fullReturn = new ArrayList<>();

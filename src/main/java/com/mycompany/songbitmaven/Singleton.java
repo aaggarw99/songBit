@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author csstudent
  */
 public class Singleton implements Serializable{
-    private ArrayList<String> favorites = new ArrayList<String>();
+    private ArrayList<SongInfo> favorites = new ArrayList<SongInfo>();
     private static transient Singleton singleton;
    
     /* A private Constructor prevents any other 
@@ -32,15 +32,15 @@ public class Singleton implements Serializable{
        return singleton;
     }
     /* Other methods protected by singleton-ness */
-    protected ArrayList<String> getFavorites(){
+    protected ArrayList<SongInfo> getFavorites(){
         return favorites;
     }
     
     protected void resetFavorites(){
-        favorites = new ArrayList<String>();
+        favorites = new ArrayList<SongInfo>();
     }
     
-    protected void addToFavorites(String s){
+    protected void addToFavorites(SongInfo s){
         favorites.add(s);
     }
     

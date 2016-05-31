@@ -182,7 +182,7 @@ public class RecommendationController implements Initializable, ControlledScreen
                 InputStream instream = entity.getContent();
                 
                 try {
-                    recommendations.add(entity.getContent());
+                    recommendations.add(instream.toString());
                 } finally {
                     instream.close();
                 }

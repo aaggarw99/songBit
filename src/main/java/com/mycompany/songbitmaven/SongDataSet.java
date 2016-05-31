@@ -30,4 +30,8 @@ public class SongDataSet {
         return tracks.getArtistNames();
     }
     
+    public SongInfo[] getInfo(){
+        return tracks.getInfo();
+    }
+    
 }
