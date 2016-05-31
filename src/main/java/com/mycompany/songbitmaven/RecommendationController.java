@@ -16,9 +16,11 @@ import de.umass.lastfm.Track;
 import de.umass.lastfm.User;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -36,6 +38,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.commons.io.IOUtils;
 
 
 /**
@@ -48,6 +51,7 @@ public class RecommendationController implements Initializable, ControlledScreen
     public ArrayList<String> name = new ArrayList<String>();
     public ArrayList<String> numListens = new ArrayList<String>();
     public String key = "d8dec72bb448436493edcb1dec93e22d";
+    public String recommendations;
     public String user;
     public Button goToSearch;
     public Button goToFavorites;
@@ -116,7 +120,7 @@ public class RecommendationController implements Initializable, ControlledScreen
                 myurl = new URL(jsonURL);
             } catch (Exception e) {
                 System.out.println("Improper URL " + jsonURL);
-                System.exit(-1);
+                return null;
             }
 
             // read from the URL
@@ -125,7 +129,7 @@ public class RecommendationController implements Initializable, ControlledScreen
                 scan = new Scanner(myurl.openStream());
             } catch (Exception e) {
                 System.out.println("Could not connect to " + jsonURL);
-                System.exit(-1);
+                return null;
             }
 
             String str = new String();
@@ -149,45 +153,59 @@ public class RecommendationController implements Initializable, ControlledScreen
     @FXML
     public void handleRecommend() throws IOException{
         ArrayList<String> trackIDs = new ArrayList<String>();
-        ArrayList<String> recommendations = new ArrayList<String>();
+        List<NameValuePair> params = new ArrayList<NameValuePair>(3);
         user = login.getText();
-        PaginatedResult<Track> recentTracks = User.getRecentTracks(user, key);
-        for(Track t : recentTracks){
-            System.out.println(t.getArtist());
-            System.out.println(t.getName());
-            
-            trackIDs.add(trackLookup(t.getName()).getIDs()[0]);
+        ArrayList<PaginatedResult<Track>> recentTracksList;
+        recentTracksList = new ArrayList<PaginatedResult<Track>>();
+        
+        for(int page=0; page<5; page++){
+            recentTracksList.add(User.getRecentTracks(user, page, 100, key));
+        }
+        HashSet<SongForPosting> songs = new ArrayList<>();
+        for(PaginatedResult<Track> recentTracks : recentTracksList){
+            for(Track t : recentTracks){
+                System.out.println(t.getArtist());
+                System.out.println(t.getName());
+                
+                
+
+                // trackIDs.add(trackLookup(t.getName()).getIDs()[0]);
+            }
         }
         
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpPost httppost = new HttpPost("");
-
+        
+        params.add(new BasicNameValuePair("user_id", login.getText()));
         // Request parameters and other properties.
+        int i = 0;
         for(Track t : recentTracks){
-            List<NameValuePair> params = new ArrayList<NameValuePair>(3);
-            int i = 0;
 
             params.add(new BasicNameValuePair("song_name", t.getName()));
             params.add(new BasicNameValuePair("song_artist", t.getArtist()));
-            params.add(new BasicNameValuePair("song_id", trackIDs.get(i)));
+            params.add(new BasicNameValuePair("song_id", new Integer(i).toString()));
             i++;
+        }
+        HttpPost httppost = new HttpPost("http://52.38.71.139:8000/adduser");
+        httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 
-            httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-            
-            //Execute and get the response.
-            HttpResponse response = httpclient.execute(httppost);
-            HttpEntity entity = response.getEntity();
+        //Execute and get the response.
+        //HttpPost httppost = new HttpPost("http://52.38.71.139:8000/users");
+        HttpResponse response = httpclient.execute(httppost);
+        
+        HttpEntity entity = response.getEntity();
 
-            if (entity != null) {
-                InputStream instream = entity.getContent();
-                
-                try {
-                    recommendations.add(instream.toString());
-                } finally {
-                    instream.close();
-                }
-            }
-        }     
+        if (entity != null) {
+            InputStream instream = entity.getContent();
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(instream, writer, "UTF-8");
+            System.out.println(writer);
+
+            /*try {
+                recommendations = instream.toString();
+            } finally {
+                instream.close();
+            }*/
+        }
     }
 }
 
