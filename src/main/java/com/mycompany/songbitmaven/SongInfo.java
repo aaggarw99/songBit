@@ -5,19 +5,22 @@
  */
 package com.mycompany.songbitmaven;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author csstudent
  */
 public class SongInfo {
     private SongAlbumInfo album;
-    private SongArtistInfo[] artists;
+    private List<SongArtistInfo> artists = new ArrayList<>();
     private String name;
     private String uri;
     private String id;
     
     public SongInfo(String n, String alb, String art){
-    
+        
     }
     
     public String getID(){
@@ -33,11 +36,27 @@ public class SongInfo {
     }
     
     public String[] getArtistNames(){
-        String[] fullReturn = new String[artists.length];
-        for(int i=0; i<artists.length; i++){
-            fullReturn[i] = artists[i].getName();
+        String[] fullReturn = new String[artists.size()];
+        for(int i=0; i<artists.size(); i++){
+            fullReturn[i] = artists.get(i).getName();
         }
         return fullReturn;
+    }
+    
+    public void setName(String name){
+        System.out.println("Setting name");
+        this.name = name;
+    }
+    
+    public void setArtist(String name){
+        System.out.println("Setting artist");
+        SongArtistInfo artist = new SongArtistInfo();
+        artist.setName(name);
+        this.artists.add(artist);
+    }
+    
+    public String toString(){
+        return "(" + name + ", " + artists.toString() + ")";
     }
     
 }

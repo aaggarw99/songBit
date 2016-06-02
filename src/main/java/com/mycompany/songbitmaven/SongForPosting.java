@@ -19,7 +19,7 @@ public class SongForPosting {
         songName = name;
         songArtist = artist;
         songId = id;
-        playCount = 0;
+        playCount = 1;
     }
     
     public String getSongName(){
