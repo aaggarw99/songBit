@@ -35,34 +35,48 @@ public class FavoritesController implements ControlledScreen, Initializable{
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong;
-    ArrayList<SongInfo> songs = new ArrayList<SongInfo>();
+    public ArrayList<SongInfo> favorites = Singleton.getInstance().getFavorites();
+    SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
+    
     
     
     public TableView table;
     private final ObservableList<SongInfo> tracks =
             FXCollections.observableArrayList(
+                    
                     // this is where I add actual songs
-                    new SongInfo("Bohemian Rhapsody", "Prince", "A Night at the Opera"),
-                    new SongInfo("I got a feeling", "Black Eyed Peas", "E.N.D")
+                    //new SongInfo("Bohemian Rhapsody", "Prince", "A Night at the Opera")
+                    // new SongInfo("I got a feeling", "Black Eyed Peas", "E.N.D")
             );
+    
+    
     
     public Button refresh;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tracks.add(song1);
         TableColumn name = new TableColumn("Name");
         name.setMinWidth(100);
         name.setCellValueFactory(
                 new PropertyValueFactory<SongInfo, String>("name"));
         
-        /*
+        
         TableColumn artist = new TableColumn("Artist");
+        artist.setCellFactory(new PropertyValueFactory<SongInfo, SongArtistInfo>("artist"));
         
         TableColumn album = new TableColumn("Album");
+        album.setCellFactory(new PropertyValueFactory<SongInfo, SongAlbumInfo>("album"));
+        
         table.getColumns().addAll(name, artist, album);
+        /*
+        for(int i = 0; i < favs.size(); i++){
+            tracks.add(favs.get(i));
+        }
         */
+        
         table.setItems(tracks);
-        table.getColumns().addAll(name);
+        
         
     }
 

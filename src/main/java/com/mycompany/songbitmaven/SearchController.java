@@ -6,7 +6,6 @@
 package com.mycompany.songbitmaven;
 
 import com.wrapper.spotify.Api;
-import com.wrapper.spotify.methods.TrackRequest;
 import com.wrapper.spotify.methods.TrackSearchRequest;
 import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.Track;
@@ -16,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import java.util.Scanner;
 import com.google.gson.*;
 import java.util.ArrayList;
@@ -35,6 +33,7 @@ public class SearchController implements ControlledScreen, Initializable {
     public Button goToSettings;
     public Button goToPlayingSong; 
     public Button addToFavorites;
+    private SongDataSet dataset;
     
  
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +78,9 @@ public class SearchController implements ControlledScreen, Initializable {
     public TextField searchScreen;
     
     @FXML
+    public Button addFavorite;
+    
+    @FXML
     public Label searchResult;
     
     @FXML
@@ -119,7 +121,7 @@ public class SearchController implements ControlledScreen, Initializable {
             Gson gson = new Gson();
             
             System.out.println(jsonURL);
-            SongDataSet dataset = gson.fromJson(str, SongDataSet.class);
+            dataset = gson.fromJson(str, SongDataSet.class);
             
             System.out.println(Arrays.toString(dataset.getNames()));
            
@@ -131,6 +133,24 @@ public class SearchController implements ControlledScreen, Initializable {
             System.out.println("Something went wrong!" + e.getMessage());
         }        
         
+    }
+    
+    @FXML
+    public void handleAddFavorite(){
+        try{
+            Singleton.getInstance().addToFavorites(dataset.getInfo()[0]);
+            System.out.println(Singleton.getInstance().getFavorites().get(0));
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    @FXML
+    public Button clear;
+    
+    @FXML
+    public void handleClear(){
+        Singleton.getInstance().resetFavorites();
     }
     
 }

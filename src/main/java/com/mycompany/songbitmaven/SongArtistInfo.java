@@ -17,5 +17,8 @@ public class SongArtistInfo {
     public String getName(){
         return name;
     }
+    public void setArtistName(String artName){
+        name = artName;
+    }
     
 }

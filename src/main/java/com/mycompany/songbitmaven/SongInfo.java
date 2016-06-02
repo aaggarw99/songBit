@@ -20,7 +20,16 @@ public class SongInfo {
     
     public SongInfo(String n, String alb, String art){
         name = n;
+        album.setName(alb);
+        for(int i = 0; i < artists.length; i++){
+            artists[i].setArtistName(art);
+        }
         
+        
+    }
+    
+    public String getID(){
+        return this.id;
     }
     
     public String getName(){
