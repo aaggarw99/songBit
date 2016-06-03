@@ -99,6 +99,13 @@ public class FavoritesController extends ControlledScreen implements Initializab
         myController.setScreen(MainApp.SETTINGS);
     }
     
+    
+    @FXML
+    public void handleClear(){
+        Singleton.getInstance().resetFavorites();
+        refresh(null);
+    }
+    
     public void loadTable(){
         TableColumn nameColumn = new TableColumn("Name");
         nameColumn.setMinWidth(100);

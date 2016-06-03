@@ -166,12 +166,4 @@ public class SearchController extends ControlledScreen implements Initializable 
         }
     }
     
-    @FXML
-    public Button clear;
-    
-    @FXML
-    public void handleClear(){
-        Singleton.getInstance().resetFavorites();
-    }
-    
 }
