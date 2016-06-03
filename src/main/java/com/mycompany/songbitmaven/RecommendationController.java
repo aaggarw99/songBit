@@ -220,6 +220,11 @@ public class RecommendationController extends ControlledScreen implements Initia
         }
         
         RecResponse recs = tryUserRecs(httpclient);
+        
+        HashSet<SongResponse> set = new HashSet<>(recs.getRecs());
+        recs.getRecs().clear();
+        recs.getRecs().addAll(set);
+        
         System.out.println(recs);
         try{
             recommendations = songResToInfo(recs.getRecs());
@@ -229,14 +234,13 @@ public class RecommendationController extends ControlledScreen implements Initia
         }
         System.out.println("Got recommendations");
         System.out.println(recommendations);
+        Singleton.getInstance().getFavorites().addAll(recommendations);
     }
     
     public List<SongInfo> songResToInfo(List<SongResponse> res){
         List<SongInfo> songs = new ArrayList<>();
         for(SongResponse songResponse : res){
-            SongInfo songInfo = new SongInfo("", "", "");
-            songInfo.setName(songResponse.getSongName());
-            songInfo.setArtist(songResponse.getSongArtist());
+            SongInfo songInfo = new SongInfo(songResponse.getSongName(), "", songResponse.getSongArtist());
             
             songs.add(songInfo);
         }

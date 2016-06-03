@@ -15,7 +15,6 @@
       </font>
     </Label>
     <Button fx:id="goToSettings" layoutX="125.0" layoutY="116.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
-    <Button fx:id="goToPlayingSong" layoutX="364.0" layoutY="185.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
     <Button fx:id="goToFavorites" layoutX="286.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
       <TextField fx:id="login" layoutX="237.0" layoutY="88.0" onAction="#handleLogin" promptText="last.fm username" />
       <Button fx:id="recommend" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onMouseReleased="#handleRecommend" text="Get Recommendations" />

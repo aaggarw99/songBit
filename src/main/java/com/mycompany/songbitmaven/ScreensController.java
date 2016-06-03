@@ -35,6 +35,7 @@ public class ScreensController extends StackPane {
     
     // this assigns a controller (node =  Parent root) to a particular screen
     private HashMap<String, Node> screens = new HashMap<>();
+    private HashMap<String, ControlledScreen> screenObjects = new HashMap<>();
     
     public ScreensController(){
         super();   
@@ -69,9 +70,9 @@ public class ScreensController extends StackPane {
         try {
             load = (Parent) myLoader.load();
             ControlledScreen myScreenControler = ((ControlledScreen) myLoader.getController());
-            myScreenControler.refresh(null);
             myScreenControler.setScreenParent(this); 
-            addScreen(name, load); 
+            addScreen(name, load);
+            screenObjects.put(name, myScreenControler);
             return true; 
         } catch (IOException ex) {
             Logger.getLogger(ScreensController.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,8 +87,9 @@ public class ScreensController extends StackPane {
     public boolean setScreen(final String name) { 
 
      if(screens.get(name) != null) { //screen loaded 
-        final DoubleProperty opacity = opacityProperty(); 
-
+        final DoubleProperty opacity = opacityProperty();
+        
+        screenObjects.get(name).refresh(null);
         //Is there is more than one screen 
         if(!getChildren().isEmpty()){ 
             Timeline fade = new Timeline( 
@@ -99,7 +101,7 @@ public class ScreensController extends StackPane {
                    //remove displayed screen 
                    getChildren().remove(0); 
                    //add new screen 
-                   getChildren().add(0, screens.get(name)); 
+                   getChildren().add(0, screens.get(name));
                    Timeline fadeIn; 
                     fadeIn = new Timeline( 
                             new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)), 

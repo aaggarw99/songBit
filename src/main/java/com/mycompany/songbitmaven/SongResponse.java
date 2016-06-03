@@ -29,4 +29,15 @@ public class SongResponse {
     public String toString(){
         return "(" + song_name + ", " + song_artist + ", " + exp_play_count + ")";
     }
+    
+    @Override
+    public int hashCode(){
+        return song_name.hashCode() + song_artist.hashCode();
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        SongResponse res = (SongResponse) obj;
+        return res.getSongName().equals(song_name) && res.getSongArtist().equals(song_artist);
+    }
 }
