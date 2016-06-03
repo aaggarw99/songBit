@@ -17,5 +17,16 @@ public class SongArtistInfo {
     public String getName(){
         return name;
     }
+    public void setArtistName(String artName){
+        name = artName;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public String toString(){
+        return name;
+    }
     
 }

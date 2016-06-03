@@ -10,13 +10,24 @@ Shared secret	40abfbba99d7aa8b44730b26a8eb244b
 package com.mycompany.songbitmaven;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  *
@@ -41,8 +52,10 @@ public class MainApp extends Application{
     public static final String FAVORITES = "FavoritesController";
     public static final String FAVORITES_FXML = "/fxml/Favorites.fxml";
     
+    
     @Override
     public void start(Stage stage) throws IOException{
+        
         
         ScreensController mainContainer = new ScreensController();
         mainContainer.loadScreen(MainApp.RECOMENDATION, MainApp.RECOMENDATION_FXML);
@@ -58,6 +71,7 @@ public class MainApp extends Application{
         mainContainer.loadScreen(MainApp.REC_LIST, MainApp.REC_LIST);
         
         */
+        
         
         mainContainer.setScreen(MainApp.RECOMENDATION);
         stage.setTitle("songBit");

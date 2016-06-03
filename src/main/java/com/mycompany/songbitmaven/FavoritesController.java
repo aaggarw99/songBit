@@ -5,33 +5,71 @@
  */
 package com.mycompany.songbitmaven;
 
+import com.google.common.collect.Table;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.util.Callback;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 /**
  *
  * @author Ashwin
  */
-public class FavoritesController implements Initializable, ControlledScreen{
+public class FavoritesController extends ControlledScreen implements Initializable{
     ScreensController myController;
-    public Button goToSearch;
-    public Button goToRecommend;
-    public Button goToSettings;
-    public Button goToPlayingSong;
     
     @FXML
-    Image img = new Image("file:logo.svg");
-    ImageView imageView = new ImageView(img);
+    public Button goToSearch;
+    @FXML
+    public Button goToRecommend;
+    @FXML
+    public Button goToSettings;
+    @FXML
+    public Button goToPlayingSong;
+
+    public ArrayList<SongInfo> favorites;
+    // SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
+    public ArrayList<String> artists;
+    public ArrayList<String> albums;    
+    
+    @FXML
+    public TableView<SongInfo> table;
+    private final ObservableList<SongInfo> tracks =
+            FXCollections.observableArrayList(
+                    
+                    // this is where I add actual songs
+                    //new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera"),
+                    //new SongInfo("I got a feeling", "Black Eyed Peas", "E.N.D")
+            );
+    
+    /*@FXML
+    public TableColumn nameColumn;
+    
+    @FXML
+    public TableColumn artistColumn;*/
+    
+    @FXML
+    public Button refresh;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // tracks.add(song1);
+        
+        loadTable();
+        
     }
 
     @Override
@@ -65,5 +103,36 @@ public class FavoritesController implements Initializable, ControlledScreen{
         myController.setScreen(MainApp.SETTINGS);
     }
     
+    public void loadTable(){
+        TableColumn nameColumn = new TableColumn("Name");
+        nameColumn.setMinWidth(100);
+        nameColumn.setCellValueFactory(
+                new PropertyValueFactory<SongInfo, String>("name"));
+        
+        
+        TableColumn artistColumn = new TableColumn("Artist");
+        artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
+        
+        table.getColumns().setAll(nameColumn, artistColumn);
+        // add values to the artists, names, and albums
+        // for loop
+        
+        favorites = Singleton.getInstance().getFavorites();
+        
+        System.out.println(favorites);
+        
+        tracks.clear();
+        
+        for(int i = 0; i < favorites.size(); i++){
+            favorites.get(i).updateArtist();
+            tracks.add(favorites.get(i));
+        }
+        
+        table.setItems(tracks);
+    }
+    
+    public void refresh(ActionEvent e){
+        loadTable();
+    }
     
 }

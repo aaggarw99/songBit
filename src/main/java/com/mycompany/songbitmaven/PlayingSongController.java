@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  *
  * @author Ashwin
  */
-public class PlayingSongController implements Initializable, ControlledScreen{
+public class PlayingSongController extends ControlledScreen implements Initializable{
     ScreensController myController;
     public Button goToRecommend;
     public Button goToSearch;

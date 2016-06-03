@@ -17,16 +17,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.util.Scanner;
 import com.google.gson.*;
+import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.util.List;
 
 /**
  *
  * @author Ashwin
  */
-public class SearchController implements Initializable, ControlledScreen {
+public class SearchController extends ControlledScreen implements Initializable {
     ScreensController myController;
     public Button goToFavorites;
     public Button goToRecommend;
@@ -35,38 +36,38 @@ public class SearchController implements Initializable, ControlledScreen {
     public Button addToFavorites;
     private SongDataSet dataset;
     
-    @Override
+ 
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    @Override
+  
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }
 
-    @Override
+    
     public void goToSearch(ActionEvent e) {
         myController.setScreen(MainApp.SEARCH_SCREEN);
     }
 
-    @Override
+ 
     public void goToRecommend(ActionEvent e) {
         myController.setScreen(MainApp.RECOMENDATION);
     }
 
-    @Override
+    
     public void goToFavorites(ActionEvent e) {
         myController.setScreen(MainApp.FAVORITES);
     }
 
-    @Override
+    
     public void goToPlayingSong(ActionEvent e) {  
         myController.setScreen(MainApp.PLAYING_SONG);
     }
     
     
 
-    @Override
+    
     public void goToSettings(ActionEvent e) {
         myController.setScreen(MainApp.SETTINGS);
     }
@@ -75,10 +76,6 @@ public class SearchController implements Initializable, ControlledScreen {
     
     @FXML
     public TextField searchScreen;
-    
-    @FXML
-    Image img = new Image("file:logo.svg");
-    ImageView imageView = new ImageView(img);
     
     @FXML
     public Button addFavorite;
@@ -100,59 +97,62 @@ public class SearchController implements Initializable, ControlledScreen {
     
     @FXML
     public void handleSearchBar(){
-        String jsonURL;
-        String text = searchScreen.getText();
+        String song = searchScreen.getText();
         
-        Api api = Api.DEFAULT_API; 
-        final TrackSearchRequest request = api.searchTracks(text).market("US").build();
+        try{
+            searchResult.setText(searchSong(song));
+        }
+        catch(Exception e){
+            searchResult.setText("We couldn't find that song");
+        }
+        
+    }
 
+    public String searchSong(String song) throws Exception{
+    Api api = Api.DEFAULT_API; 
+        final TrackSearchRequest request = api.searchTracks(song).market("US").build();
+
+        final Page<Track> trackSearchResult = request.get();
+        String jsonURL = trackSearchResult.getNext();
+
+        URL myurl = null;
         try {
-            final Page<Track> trackSearchResult = request.get();
-            jsonURL = trackSearchResult.getNext();
-           
-            URL myurl = null;
-            try {
-                myurl = new URL(jsonURL);
-            } catch (Exception e) {
-                System.out.println("Improper URL " + jsonURL);
-                System.exit(-1);
-            }
-
-            // read from the URL
-            Scanner scan = null;
-            try {
-                scan = new Scanner(myurl.openStream());
-            } catch (Exception e) {
-                System.out.println("Could not connect to " + jsonURL);
-                System.exit(-1);
-            }
-
-            String str = new String();
-            while (scan.hasNext()) {
-                str += scan.nextLine() + "\n";
-            }
-            scan.close();
-
-            Gson gson = new Gson();
-            
-            System.out.println(jsonURL);
-            dataset = gson.fromJson(str, SongDataSet.class);
-            
-            System.out.println(Arrays.toString(dataset.getNames()));
-           
-            String firstResult = dataset.getNames()[0];
-            
-            searchResult.setText(firstResult);
-
+            myurl = new URL(jsonURL);
         } catch (Exception e) {
-            System.out.println("Something went wrong!" + e.getMessage());
-        }        
+            System.out.println("Improper URL " + jsonURL);
+        }
+
+        // read from the URL
+        Scanner scan = null;
+        try {
+            scan = new Scanner(myurl.openStream());
+        } catch (Exception e) {
+            System.out.println("Could not connect to " + jsonURL);
+        }
+
+        String str = new String();
+        while (scan.hasNext()) {
+            str += scan.nextLine() + "\n";
+        }
+        scan.close();
+
+        Gson gson = new Gson();
+
+        System.out.println(jsonURL);
+        dataset = gson.fromJson(str, SongDataSet.class);
+
+        System.out.println(Arrays.toString(dataset.getNames()));
+
+        String firstResult = dataset.getNames()[0];
         
+        return firstResult;
     }
     
     @FXML
     public void handleAddFavorite(){
+        System.out.println("Handling add to favorites");
         try{
+            System.out.println(Arrays.toString(dataset.getInfo()));
             Singleton.getInstance().addToFavorites(dataset.getInfo()[0]);
             System.out.println(Singleton.getInstance().getFavorites().get(0));
         } catch(Exception e){

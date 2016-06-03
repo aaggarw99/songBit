@@ -69,6 +69,7 @@ public class ScreensController extends StackPane {
         try {
             load = (Parent) myLoader.load();
             ControlledScreen myScreenControler = ((ControlledScreen) myLoader.getController());
+            myScreenControler.refresh(null);
             myScreenControler.setScreenParent(this); 
             addScreen(name, load); 
             return true; 
@@ -79,12 +80,7 @@ public class ScreensController extends StackPane {
             System.out.println(name);
             System.out.println(resource);
         }
-        return false; 
-          
-        
-          
-          
-        
+        return false;
    } 
     
     public boolean setScreen(final String name) { 
