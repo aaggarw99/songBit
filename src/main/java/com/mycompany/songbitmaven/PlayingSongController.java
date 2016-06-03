@@ -9,8 +9,11 @@ import com.wrapper.spotify.models.Track;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -23,6 +26,10 @@ public class PlayingSongController implements Initializable, ControlledScreen{
     public Button goToSettings;
     public Button goToFavorites;
     public static Track currentSong;
+    
+    @FXML
+    Image img = new Image("file:logo.svg");
+    ImageView imageView = new ImageView(img);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

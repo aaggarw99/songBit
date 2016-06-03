@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mycompany.songbitmaven.PlayingSongController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.PlayingSongController">
   <children>
     <Button fx:id="goToSettings" layoutX="226.0" layoutY="264.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
     <Button fx:id="goToFavorites" layoutX="202.0" layoutY="91.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
     <Button fx:id="goToRecommend" layoutX="300.0" layoutY="97.0" mnemonicParsing="false" onAction="#goToRecommend" text="Recommend" />
     <Button fx:id="goToSearch" layoutX="366.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToSearch" text="Search" />
     <Label layoutX="140.0" layoutY="43.0" text="Playing Song" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" />
   </children>
 </AnchorPane>

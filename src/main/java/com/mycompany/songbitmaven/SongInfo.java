@@ -15,9 +15,14 @@ public class SongInfo {
     private String name;
     private String uri;
     private String id;
+    private String preview_url;
     
     public SongInfo(String n, String alb, String art){
     
+    }
+    
+    public String getUrl(){
+        return this.preview_url;
     }
     
     public String getID(){

@@ -8,18 +8,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.SearchController">
   <children>
-    <Button fx:id="goToRecommend" layoutX="112.0" layoutY="218.0" mnemonicParsing="false" onAction="#goToRecommend" text="GoToRecommendations" />
+    <Button fx:id="goToRecommend" layoutX="77.0" layoutY="133.0" mnemonicParsing="false" onAction="#goToRecommend" text="GoToRecommendations" />
     <TextField fx:id="searchScreen" layoutX="200.0" layoutY="89.0" onAction="#handleSearchBar" prefWidth="200.0" text="" />
     <Label layoutX="211.0" layoutY="26.0" prefHeight="47.0" prefWidth="178.0" text="SEARCH SCREEN">
       <font>
         <Font name="Bookman Old Style Bold" size="19.0" />
       </font>
     </Label>
-    <Button fx:id="goToSettings" layoutX="135.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
-    <Button fx:id="goToPlayingSong" layoutX="347.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
-    <Button fx:id="goToFavorites" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
+    <Button fx:id="goToSettings" layoutX="92.0" layoutY="68.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
+    <Button fx:id="goToPlayingSong" layoutX="245.0" layoutY="192.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
+    <Button fx:id="goToFavorites" layoutX="112.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
     <Button fx:id="addFavorite" layoutX="405.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorite" />
       <Label fx:id="searchResult" layoutX="425.0" layoutY="65.0" text="returned song:" />
       <Button fx:id="clear" layoutX="412.0" layoutY="167.0" mnemonicParsing="false" onMouseReleased="#handleClear" text="Clear Favorites" />
+      <Button fx:id="goToPreview" layoutX="405.0" layoutY="205.0" mnemonicParsing="false" onMouseReleased="#handleGoToPreview" text="Get Preview" />
   </children>
 </AnchorPane>

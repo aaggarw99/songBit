@@ -22,6 +22,14 @@ public class SongList {
         return fullReturn;
     }
     
+    public String[] getUrls(){
+        String[] fullReturn = new String[items.length];
+        for(int i=0; i<items.length; i++){
+            fullReturn[i] = items[i].getUrl();
+        }
+        return fullReturn;
+    }
+    
     public String[] getAlbumNames(){
         String[] fullReturn = new String[items.length];
         for(int i=0; i<items.length; i++){

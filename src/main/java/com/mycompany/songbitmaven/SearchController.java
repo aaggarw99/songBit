@@ -17,7 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.util.Scanner;
 import com.google.gson.*;
+import java.net.URI;
 import java.util.Arrays;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -74,10 +77,26 @@ public class SearchController implements Initializable, ControlledScreen {
     public TextField searchScreen;
     
     @FXML
+    Image img = new Image("file:logo.svg");
+    ImageView imageView = new ImageView(img);
+    
+    @FXML
     public Button addFavorite;
     
     @FXML
     public Label searchResult;
+    
+    @FXML
+    public Button goToPreview;
+    
+    @FXML
+    public void handleGoToPreview(){
+        try{
+            java.awt.Desktop.getDesktop().browse(new URI(dataset.getUrls()[0]));
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
     
     @FXML
     public void handleSearchBar(){

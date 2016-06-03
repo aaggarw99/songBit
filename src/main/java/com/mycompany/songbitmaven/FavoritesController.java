@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 /**
@@ -23,6 +25,10 @@ public class FavoritesController implements Initializable, ControlledScreen{
     public Button goToRecommend;
     public Button goToSettings;
     public Button goToPlayingSong;
+    
+    @FXML
+    Image img = new Image("file:logo.svg");
+    ImageView imageView = new ImageView(img);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

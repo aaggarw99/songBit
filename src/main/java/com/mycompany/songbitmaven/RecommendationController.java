@@ -28,6 +28,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
@@ -57,6 +59,10 @@ public class RecommendationController implements Initializable, ControlledScreen
     public Button goToFavorites;
     public Button goToSettings;
     public Button goToPlayingSong;
+    
+    @FXML
+    Image img = new Image("file:logo.svg");
+    ImageView imageView = new ImageView(img);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -152,7 +158,7 @@ public class RecommendationController implements Initializable, ControlledScreen
     
     @FXML
     public void handleRecommend() throws IOException{
-        ArrayList<String> trackIDs = new ArrayList<String>();
+        /*ArrayList<String> trackIDs = new ArrayList<String>();
         List<NameValuePair> params = new ArrayList<NameValuePair>(3);
         user = login.getText();
         ArrayList<PaginatedResult<Track>> recentTracksList;
@@ -200,12 +206,12 @@ public class RecommendationController implements Initializable, ControlledScreen
             IOUtils.copy(instream, writer, "UTF-8");
             System.out.println(writer);
 
-            /*try {
+            try {
                 recommendations = instream.toString();
             } finally {
                 instream.close();
-            }*/
-        }
+            }
+        }*/
     }
 }
 
