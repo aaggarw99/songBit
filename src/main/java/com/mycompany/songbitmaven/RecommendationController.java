@@ -63,12 +63,16 @@ public class RecommendationController extends ControlledScreen implements Initia
     public String key = "d8dec72bb448436493edcb1dec93e22d";
     public List<SongInfo> recommendations;
     public String user;
-    public Button goToSearch;
-    public Button goToFavorites;
-    public Button goToSettings;
-    public Button goToPlayingSong;
     
-
+    @FXML
+    public void handleLoadProfile(){
+        Singleton.load();
+    }
+    
+    @FXML
+    public void handleSaveProfile(){
+        Singleton.save();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -235,6 +239,7 @@ public class RecommendationController extends ControlledScreen implements Initia
         System.out.println("Got recommendations");
         System.out.println(recommendations);
         Singleton.getInstance().getFavorites().addAll(recommendations);
+        System.out.println(Singleton.getInstance().getFavorites());
     }
     
     public List<SongInfo> songResToInfo(List<SongResponse> res){

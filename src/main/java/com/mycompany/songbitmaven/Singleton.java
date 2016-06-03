@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author csstudent
  */
 public class Singleton implements Serializable{
-    private static ArrayList<SongInfo> favorites = new ArrayList<SongInfo>();
+    private ArrayList<SongInfo> favorites = new ArrayList<SongInfo>();
     private static transient Singleton singleton;
    
     /* A private Constructor prevents any other 
@@ -31,39 +31,38 @@ public class Singleton implements Serializable{
        init();
        return singleton;
     }
-    /* Other methods protected by singleton-ness */
-    protected static ArrayList<SongInfo> getFavorites(){
+    
+    public ArrayList<SongInfo> getFavorites(){
         return favorites;
     }
     
-    protected void resetFavorites(){
+    public void resetFavorites(){
         favorites = new ArrayList<SongInfo>();
     }
     
-    protected void addToFavorites(SongInfo s){
+    public void addToFavorites(SongInfo s){
         favorites.add(s);
     }
     
     private static void init() {
         if (singleton == null) {
-            try
-            {
-               FileInputStream fileIn = new FileInputStream("settings.ser");
-               ObjectInputStream in = new ObjectInputStream(fileIn);
-               singleton = (Singleton) in.readObject();
-               in.close();
-               fileIn.close();
-               System.out.println("Loaded data successfully");
-            }catch(IOException i)
-            {
-               singleton = new Singleton();
-               return;
-            }catch(ClassNotFoundException c)
-            {
-               System.out.println("Employee class not found");
-               c.printStackTrace();
-               return;
-            }            
+            load();
+        }
+    }
+    
+    public static void load(){
+        try{
+            FileInputStream fileIn = new FileInputStream("settings.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            singleton = (Singleton) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Loaded data successfully");
+        }catch(IOException i){
+           singleton = new Singleton();
+        }catch(ClassNotFoundException c){
+           System.out.println("Employee class not found");
+           c.printStackTrace();
         }
     }
         
@@ -76,7 +75,7 @@ public class Singleton implements Serializable{
            out.writeObject(singleton);
            out.close();
            fileOut.close();
-           System.out.printf("Serialized data is saved in settings.ser");
+           System.out.println("Serialized data is saved in settings.ser");
         }catch(IOException i) {
             i.printStackTrace();
         }    

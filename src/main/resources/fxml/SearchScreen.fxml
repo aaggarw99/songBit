@@ -2,25 +2,41 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.SearchController">
   <children>
-    <Button fx:id="goToRecommend" layoutX="77.0" layoutY="133.0" mnemonicParsing="false" onAction="#goToRecommend" text="GoToRecommendations" />
-    <TextField fx:id="searchScreen" layoutX="200.0" layoutY="89.0" onAction="#handleSearchBar" prefWidth="200.0" text="" />
-    <Label layoutX="211.0" layoutY="26.0" prefHeight="47.0" prefWidth="178.0" text="SEARCH SCREEN">
+    <TextField fx:id="searchScreen" layoutX="200.0" layoutY="133.0" onAction="#handleSearchBar" prefWidth="200.0" text="" />
+    <Label layoutX="211.0" layoutY="73.0" prefHeight="47.0" prefWidth="178.0" text="SEARCH SCREEN">
       <font>
         <Font name="Bookman Old Style Bold" size="19.0" />
       </font>
     </Label>
-    <Button fx:id="goToSettings" layoutX="92.0" layoutY="68.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
-    <Button fx:id="goToFavorites" layoutX="112.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
     <Button fx:id="addFavorite" layoutX="405.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorite" />
       <Label fx:id="searchResult" layoutX="425.0" layoutY="65.0" text="returned song:" />
       <Button fx:id="clear" layoutX="412.0" layoutY="167.0" mnemonicParsing="false" onMouseReleased="#handleClear" text="Clear Favorites" />
       <Button fx:id="goToPreview" layoutX="405.0" layoutY="205.0" mnemonicParsing="false" onMouseReleased="#handleGoToPreview" text="Get Preview" />
     <Button fx:id="addToFavorites" layoutX="405.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorite" />
+      <MenuBar prefHeight="29.0" prefWidth="600.0" AnchorPane.rightAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveProfile" text="Save Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadProfile" text="Load Profile" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Goto">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#goToRecommend" text="Get Recommendations" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
   </children>
 </AnchorPane>

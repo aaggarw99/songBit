@@ -29,12 +29,18 @@ import java.util.List;
  */
 public class SearchController extends ControlledScreen implements Initializable {
     ScreensController myController;
-    public Button goToFavorites;
-    public Button goToRecommend;
-    public Button goToSettings;
-    public Button goToPlayingSong; 
     public Button addToFavorites;
     private SongDataSet dataset;
+    
+    @FXML
+    public void handleLoadProfile(){
+        Singleton.load();
+    }
+    
+    @FXML
+    public void handleSaveProfile(){
+        Singleton.save();
+    }
     
  
     public void initialize(URL location, ResourceBundle resources) {

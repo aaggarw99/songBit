@@ -30,20 +30,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class FavoritesController extends ControlledScreen implements Initializable{
     ScreensController myController;
-    
-    @FXML
-    public Button goToSearch;
-    @FXML
-    public Button goToRecommend;
-    @FXML
-    public Button goToSettings;
-    @FXML
-    public Button goToPlayingSong;
 
     public ArrayList<SongInfo> favorites;
     // SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
     public ArrayList<String> artists;
-    public ArrayList<String> albums;    
+    public ArrayList<String> albums;
+    
+    @FXML
+    public void handleSaveProfile(){
+        Singleton.save();
+    }
+    
+    @FXML
+    public void handleLoadProfile(){
+        Singleton.load();
+        refresh(null);
+    }
     
     @FXML
     public TableView<SongInfo> table;
@@ -88,12 +90,6 @@ public class FavoritesController extends ControlledScreen implements Initializab
     }
 
     @Override
-    public void goToFavorites(ActionEvent e) {
-        
-        myController.setScreen(MainApp.FAVORITES);
-    }
-
-    @Override
     public void goToPlayingSong(ActionEvent e) {
         myController.setScreen(MainApp.PLAYING_SONG);
     }
@@ -118,8 +114,6 @@ public class FavoritesController extends ControlledScreen implements Initializab
         // for loop
         
         favorites = Singleton.getInstance().getFavorites();
-        
-        System.out.println(favorites);
         
         tracks.clear();
         

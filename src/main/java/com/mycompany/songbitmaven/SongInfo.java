@@ -6,6 +6,7 @@
 package com.mycompany.songbitmaven;
 
 
+import java.io.Serializable;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author csstudent
  */
-public class SongInfo {
+public class SongInfo implements Serializable{
     private SongAlbumInfo album = new SongAlbumInfo();
     private List<SongArtistInfo> artists = new ArrayList<>();
     private String artist = "Queen";

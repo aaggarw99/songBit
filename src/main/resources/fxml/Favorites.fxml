@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.FavoritesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.FavoritesController">
   <children>
-    <Button fx:id="goToSettings" layoutX="58.0" layoutY="190.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
-    <Button fx:id="goToRecommend" layoutX="57.0" layoutY="105.0" mnemonicParsing="false" onAction="#goToRecommend" text="Recommendations" />
-    <Button fx:id="goToSearch" layoutX="61.0" layoutY="149.0" mnemonicParsing="false" onAction="#goToSearch" text="Search" />
     <Label layoutX="176.0" layoutY="68.0" text="Favorites" />
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="84.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true" />
     <TableView id="favoritesTable" fx:id="table" layoutX="240.0" layoutY="78.0" prefHeight="267.0" prefWidth="305.0" />
+      <MenuBar prefHeight="29.0" prefWidth="600.0" AnchorPane.rightAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveProfile" text="Save Profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadProfile" text="Load Profile" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Goto">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#goToRecommend" text="Get Recommendations" />
+                  <MenuItem mnemonicParsing="false" onAction="#goToSearch" text="Search" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
   </children>
 </AnchorPane>

@@ -5,11 +5,13 @@
  */
 package com.mycompany.songbitmaven;
 
+import java.io.Serializable;
+
 /**
  *
  * @author csstudent
  */
-public class SongAlbumInfo {
+public class SongAlbumInfo implements Serializable{
     private String id;
     private String uri;
     private String name;
