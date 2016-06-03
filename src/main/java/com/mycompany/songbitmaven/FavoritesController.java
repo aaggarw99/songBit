@@ -31,51 +31,65 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class FavoritesController implements ControlledScreen, Initializable{
     ScreensController myController;
+    
+    @FXML
     public Button goToSearch;
+    @FXML
     public Button goToRecommend;
+    @FXML
     public Button goToSettings;
+    @FXML
     public Button goToPlayingSong;
     public ArrayList<SongInfo> favorites = Singleton.getInstance().getFavorites();
-    SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
+    // SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
+    public ArrayList<String> artists;
+    public ArrayList<String> albums;    
     
-    
-    
-    public TableView table;
+    @FXML
+    public TableView<SongInfo> table;
     private final ObservableList<SongInfo> tracks =
             FXCollections.observableArrayList(
                     
                     // this is where I add actual songs
-                    //new SongInfo("Bohemian Rhapsody", "Prince", "A Night at the Opera")
-                    // new SongInfo("I got a feeling", "Black Eyed Peas", "E.N.D")
+                    //new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera"),
+                    //new SongInfo("I got a feeling", "Black Eyed Peas", "E.N.D")
             );
     
+    /*@FXML
+    public TableColumn nameColumn;
     
+    @FXML
+    public TableColumn artistColumn;*/
     
+    @FXML
     public Button refresh;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tracks.add(song1);
-        TableColumn name = new TableColumn("Name");
-        name.setMinWidth(100);
-        name.setCellValueFactory(
+        // tracks.add(song1);
+        
+        TableColumn nameColumn = new TableColumn("Name");
+        nameColumn.setMinWidth(100);
+        nameColumn.setCellValueFactory(
                 new PropertyValueFactory<SongInfo, String>("name"));
         
         
-        TableColumn artist = new TableColumn("Artist");
-        artist.setCellFactory(new PropertyValueFactory<SongInfo, SongArtistInfo>("artist"));
-        
-        TableColumn album = new TableColumn("Album");
-        album.setCellFactory(new PropertyValueFactory<SongInfo, SongAlbumInfo>("album"));
-        
-        table.getColumns().addAll(name, artist, album);
-        /*
-        for(int i = 0; i < favs.size(); i++){
-            tracks.add(favs.get(i));
-        }
-        */
+        TableColumn artistColumn = new TableColumn("Artist");
+        artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
         
         table.setItems(tracks);
+        table.getColumns().addAll(nameColumn, artistColumn);
+        // add values to the artists, names, and albums
+        // for loop
+        
+        
+        
+        for(int i = 0; i < favorites.size(); i++){
+            tracks.add(favorites.get(i));
+        }
+        
+        
+        
         
         
     }
@@ -137,7 +151,7 @@ public class FavoritesController implements ControlledScreen, Initializable{
             row1.addAll("d22");
             songData.add(row);
             songData.add(row1);
-            table.getItems().add(songData);
+            // table.getItems().add(songData);
     }
     
 }

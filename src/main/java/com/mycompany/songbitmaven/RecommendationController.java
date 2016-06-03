@@ -6,6 +6,10 @@
 package com.mycompany.songbitmaven;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
 import com.wrapper.spotify.Api;
 import com.wrapper.spotify.methods.TrackSearchRequest;
 import com.wrapper.spotify.models.Page;
@@ -16,9 +20,14 @@ import de.umass.lastfm.Track;
 import de.umass.lastfm.User;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -26,6 +35,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import net.sf.json.JSONObject;
+import net.sf.json.util.JSONTokener;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
@@ -36,6 +47,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.HttpGet;
 
 
 /**
@@ -48,6 +61,7 @@ public class RecommendationController implements ControlledScreen, Initializable
     public ArrayList<String> name = new ArrayList<String>();
     public ArrayList<String> numListens = new ArrayList<String>();
     public String key = "d8dec72bb448436493edcb1dec93e22d";
+    public List<SongInfo> recommendations;
     public String user;
     public Button goToSearch;
     public Button goToFavorites;
@@ -116,7 +130,7 @@ public class RecommendationController implements ControlledScreen, Initializable
                 myurl = new URL(jsonURL);
             } catch (Exception e) {
                 System.out.println("Improper URL " + jsonURL);
-                System.exit(-1);
+                return null;
             }
 
             // read from the URL
@@ -125,7 +139,7 @@ public class RecommendationController implements ControlledScreen, Initializable
                 scan = new Scanner(myurl.openStream());
             } catch (Exception e) {
                 System.out.println("Could not connect to " + jsonURL);
-                System.exit(-1);
+                return null;
             }
 
             String str = new String();
@@ -149,45 +163,104 @@ public class RecommendationController implements ControlledScreen, Initializable
     @FXML
     public void handleRecommend() throws IOException{
         ArrayList<String> trackIDs = new ArrayList<String>();
-        ArrayList<String> recommendations = new ArrayList<String>();
+        List<NameValuePair> params = new ArrayList<NameValuePair>(3);
         user = login.getText();
-        PaginatedResult<Track> recentTracks = User.getRecentTracks(user, key);
-        for(Track t : recentTracks){
-            System.out.println(t.getArtist());
-            System.out.println(t.getName());
-            
-            trackIDs.add(trackLookup(t.getName()).getIDs()[0]);
+        ArrayList<PaginatedResult<Track>> recentTracksList;
+        recentTracksList = new ArrayList<PaginatedResult<Track>>();
+        
+        for(int page=0; page<5; page++){
+            recentTracksList.add(User.getRecentTracks(user, page, 100, key));
+        }
+        HashMap<String, SongForPosting> songs = new HashMap<>();
+        for(PaginatedResult<Track> recentTracks : recentTracksList){
+            for(Track t : recentTracks){
+                /*System.out.println(t.getArtist());
+                System.out.println(t.getName());
+                System.out.println(t.getMbid());*/
+                
+                SongForPosting currentSong = songs.get(t.getMbid());
+                
+                if(currentSong != null){
+                    currentSong.incPlayCount();
+                }
+                else{
+                    currentSong = new SongForPosting(t.getName(), t.getArtist(), t.getMbid());
+                    songs.put(t.getMbid(), currentSong);
+                }
+            }
         }
         
         CloseableHttpClient httpclient = HttpClients.createDefault();
-        HttpPost httppost = new HttpPost("");
-
+        
+        params.add(new BasicNameValuePair("user_id", login.getText()));
         // Request parameters and other properties.
-        for(Track t : recentTracks){
-            List<NameValuePair> params = new ArrayList<NameValuePair>(3);
-            int i = 0;
-
-            params.add(new BasicNameValuePair("song_name", t.getName()));
-            params.add(new BasicNameValuePair("song_artist", t.getArtist()));
-            params.add(new BasicNameValuePair("song_id", trackIDs.get(i)));
-            i++;
-
-            httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+        int i = 0;
+        for(String key : songs.keySet()){
             
-            //Execute and get the response.
-            HttpResponse response = httpclient.execute(httppost);
-            HttpEntity entity = response.getEntity();
+            SongForPosting currentSong = songs.get(key);
 
-            if (entity != null) {
-                InputStream instream = entity.getContent();
-                
-                try {
-                    recommendations.add(instream.toString());
-                } finally {
-                    instream.close();
-                }
-            }
-        }     
+            params.add(new BasicNameValuePair("song_name", currentSong.getSongName()));
+            params.add(new BasicNameValuePair("song_artist", currentSong.getSongArtist()));
+            params.add(new BasicNameValuePair("song_id", currentSong.getSongId()));
+            params.add(new BasicNameValuePair("play_count", new Integer(currentSong.getPlayCount()).toString()));
+            
+        }
+        HttpPost httppost = new HttpPost("http://52.38.71.139:8000/adduser");
+        httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+
+        //Execute and get the response.
+        //HttpPost httppost = new HttpPost("http://52.38.71.139:8000/users");
+        try{
+            httpclient.execute(httppost);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        RecResponse recs = tryUserRecs(httpclient);
+        System.out.println(recs);
+        try{
+            recommendations = songResToInfo(recs.getRecs());
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Got recommendations");
+        System.out.println(recommendations);
+    }
+    
+    public List<SongInfo> songResToInfo(List<SongResponse> res){
+        List<SongInfo> songs = new ArrayList<>();
+        for(SongResponse songResponse : res){
+            SongInfo songInfo = new SongInfo("", "", "");
+            songInfo.setName(songResponse.getSongName());
+            songInfo.setArtist(songResponse.getSongArtist());
+            
+            songs.add(songInfo);
+        }
+        
+        return songs;
+    }
+    
+    public RecResponse tryUserRecs(CloseableHttpClient httpclient) throws IOException{
+        HttpGet httpget = new HttpGet("http://52.38.71.139:8000/recs/" + login.getText());
+        HttpResponse response = httpclient.execute(httpget);
+        
+        System.out.println("Got response!");
+        
+        HttpEntity entity = response.getEntity();
+
+        InputStream instream = entity.getContent();
+        StringWriter writer = new StringWriter();
+        IOUtils.copy(instream, writer, "UTF-8");
+        StringReader reader = new StringReader(writer.toString());
+        JsonElement elem = new JsonParser().parse(reader);
+
+        Gson gson = new GsonBuilder().create();
+        RecResponse recs = gson.fromJson(elem, RecResponse.class);
+
+        instream.close();
+        return recs;
     }
 }
 

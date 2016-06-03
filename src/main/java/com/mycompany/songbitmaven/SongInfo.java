@@ -5,27 +5,42 @@
  */
 package com.mycompany.songbitmaven;
 
+
 import javafx.beans.property.SimpleStringProperty;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
  * @author csstudent
  */
 public class SongInfo {
-    private SongAlbumInfo album;
-    private SongArtistInfo[] artists;
-    private String name;
+    private SongAlbumInfo album = new SongAlbumInfo();
+    private List<SongArtistInfo> artists = new ArrayList<>();
+    private String artist = "Queen";
+    private String name = "Bohemian Rhapsody";
     private String uri;
     private String id;
     
     public SongInfo(String n, String alb, String art){
         name = n;
         album.setName(alb);
-        for(int i = 0; i < artists.length; i++){
-            artists[i].setArtistName(art);
+        if(art != null){
+            this.setArtist(art);
         }
-        
-        
+        else{
+            if(this.artists.size() > 0){
+                this.artist = artists.get(0).getName();
+            }
+        }
+    }
+    
+    public SongInfo(){
+        if(this.artists.size() > 0){
+            this.artist = artists.get(0).getName();
+        }
     }
     
     public String getID(){
@@ -41,11 +56,32 @@ public class SongInfo {
     }
     
     public String[] getArtistNames(){
-        String[] fullReturn = new String[artists.length];
-        for(int i=0; i<artists.length; i++){
-            fullReturn[i] = artists[i].getName();
+        String[] fullReturn = new String[artists.size()];
+        for(int i=0; i<artists.size(); i++){
+            fullReturn[i] = artists.get(i).getName();
         }
         return fullReturn;
+    }
+    
+    public String getArtist(){
+        return this.artist;
+    }
+    
+    public void setName(String name){
+        System.out.println("Setting name");
+        this.name = name;
+    }
+    
+    public void setArtist(String name){
+        System.out.println("Setting artist");
+        SongArtistInfo artist = new SongArtistInfo();
+        artist.setName(name);
+        this.artists.add(artist);
+        this.artist = name;
+    }
+    
+    public String toString(){
+        return "(" + name + ", " + artists.toString() + ")";
     }
     
 }

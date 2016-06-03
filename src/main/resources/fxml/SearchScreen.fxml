@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.mycompany.songbitmaven.SearchController">
   <children>
     <Button fx:id="goToRecommend" layoutX="112.0" layoutY="218.0" mnemonicParsing="false" onAction="#goToRecommend" text="GoToRecommendations" />
     <TextField fx:id="searchScreen" layoutX="200.0" layoutY="89.0" onAction="#handleSearchBar" prefWidth="200.0" text="" />
@@ -18,13 +23,7 @@
     <Button fx:id="goToSettings" layoutX="135.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
     <Button fx:id="goToPlayingSong" layoutX="347.0" layoutY="284.0" mnemonicParsing="false" onAction="#goToPlayingSong" text="PlayingSong" />
     <Button fx:id="goToFavorites" layoutX="226.0" layoutY="239.0" mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
-<<<<<<< HEAD
     <Button layoutX="405.0" layoutY="133.0" mnemonicParsing="false" text="Add to Favorite" />
     <Label fx:id="searchResult" layoutX="266.0" layoutY="128.0" prefHeight="21.0" text="" />
-=======
-    <Button fx:id="addFavorite" layoutX="405.0" layoutY="133.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorite" />
-      <Label fx:id="searchResult" layoutX="425.0" layoutY="65.0" text="returned song:" />
-      <Button fx:id="clear" layoutX="412.0" layoutY="167.0" mnemonicParsing="false" onMouseReleased="#handleClear" text="Clear Favorites" />
->>>>>>> 14bd28fa3f7a149962944cb11d83bfefca68ad3f
   </children>
 </AnchorPane>
