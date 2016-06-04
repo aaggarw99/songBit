@@ -22,6 +22,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.application.Platform;
 
 /**
  *
@@ -29,8 +30,9 @@ import java.util.List;
  */
 public class SearchController extends ControlledScreen implements Initializable {
     ScreensController myController;
-    public Button addToFavorites;
     private SongDataSet dataset;
+   
+    
     
     @FXML
     public void handleLoadProfile(){
@@ -164,6 +166,21 @@ public class SearchController extends ControlledScreen implements Initializable 
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    private MenuItem Close;
+    private MenuItem About;
+    @FXML
+    public void close(ActionEvent e){
+        Platform.exit();
+    }
+    
+    @FXML
+    public void about(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Song Recommender Information");
+        alert.setContentText("Product Completed June 4th, 2016" + "\n" + "by Alex Gajweski, Ashwin Aggarwal, and Luis de Pablo");
+        alert.showAndWait();
     }
     
 }

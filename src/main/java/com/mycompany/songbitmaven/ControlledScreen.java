@@ -30,5 +30,7 @@ public abstract class ControlledScreen {
     public abstract void goToPlayingSong(ActionEvent e);
     public abstract void goToSettings(ActionEvent e);
     public void refresh(ActionEvent e){};
+    public void close(ActionEvent e){};
+    public void about(ActionEvent e){};
     
 }

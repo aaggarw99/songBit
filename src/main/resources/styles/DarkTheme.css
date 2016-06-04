@@ -1,0 +1,57 @@
+.background {
+    -fx-background-color: #3D3D3D;
+    
+}
+
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    
+    
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 17pt;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.menu-bar {
+    
+    
+    
+}
+
+.menu-bar .label {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Times New Roman";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 12pt;
+   
+}
+
+.Button .label{
+    -fx-font-family: "Times New Roman";
+    
+}

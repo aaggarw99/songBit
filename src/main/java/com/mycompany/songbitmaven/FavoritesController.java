@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -108,12 +109,13 @@ public class FavoritesController extends ControlledScreen implements Initializab
     
     public void loadTable(){
         TableColumn nameColumn = new TableColumn("Name");
-        nameColumn.setMinWidth(100);
+        nameColumn.setMinWidth(250);
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<SongInfo, String>("name"));
         
         
         TableColumn artistColumn = new TableColumn("Artist");
+        artistColumn.setMinWidth(250);
         artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
         
         table.getColumns().setAll(nameColumn, artistColumn);
@@ -134,6 +136,22 @@ public class FavoritesController extends ControlledScreen implements Initializab
     
     public void refresh(ActionEvent e){
         loadTable();
+    }
+    
+    private MenuItem Close;
+    private MenuItem About;
+    @FXML
+    public void close(ActionEvent e){
+        Platform.exit();
+    }
+    
+    @FXML
+    public void about(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Song Recommender Information");
+        alert.setContentText("Product Completed June 4th, 2016" + "\n" + "by Alex Gajweski, Ashwin Aggarwal, and Luis de Pablo");
+        alert.showAndWait();
     }
     
 }

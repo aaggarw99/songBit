@@ -31,10 +31,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import net.sf.json.JSONObject;
 import net.sf.json.util.JSONTokener;
 import org.apache.commons.httpclient.HttpClient;
@@ -64,6 +68,8 @@ public class RecommendationController extends ControlledScreen implements Initia
     public List<SongInfo> recommendations;
     public String user;
     
+    
+    
     @FXML
     public void handleLoadProfile(){
         Singleton.load();
@@ -76,6 +82,7 @@ public class RecommendationController extends ControlledScreen implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
     }
 
     @Override
@@ -272,6 +279,58 @@ public class RecommendationController extends ControlledScreen implements Initia
         instream.close();
         return recs;
     }
+    
+    private MenuItem Close;
+    private MenuItem About;
+    @FXML
+    public void close(ActionEvent e){
+        Platform.exit();
+    }
+    
+    @FXML
+    public void about(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Song Recommender Information");
+        alert.setContentText("Product Completed June 4th, 2016" + "\n" + "by Alex Gajweski, Ashwin Aggarwal, and Luis de Pablo");
+        alert.showAndWait();
+    }
+    // table stuff is below
+    /*
+    ArrayList<SongInfo> favorites;
+    @FXML
+    public TableView table;
+    private final ObservableList<SongInfo> tracks =
+            FXCollections.observableArrayList(
+            );
+    
+    public void loadTable(){
+        TableColumn nameColumn = new TableColumn("Name");
+        nameColumn.setMinWidth(250);
+        nameColumn.setCellValueFactory(
+                new PropertyValueFactory<SongInfo, String>("name"));
+        
+        
+        TableColumn artistColumn = new TableColumn("Artist");
+        artistColumn.setMinWidth(250);
+        artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
+        
+        table.getColumns().setAll(nameColumn, artistColumn);
+        // add values to the artists, names, and albums
+        // for loop
+        
+        
+        
+        tracks.clear();
+        
+        for(int i = 0; i < recommendations.size(); i++){
+            recommendations.get(i).updateArtist();
+            tracks.add(recommendations.get(i));
+        }
+        
+        table.setItems(tracks);
+    }
+    */
 }
 
 

@@ -5,28 +5,31 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../styles/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
   <children>
-    <Label layoutX="208.0" layoutY="24.0" prefHeight="77.0" prefWidth="184.0" text="RECOMMENDATION PAGE" textAlignment="CENTER">
+    <Label layoutX="14.0" layoutY="40.0" prefHeight="27.0" prefWidth="180.0" text="RECOMMENDATIONS" textAlignment="CENTER">
       <font>
-        <Font name="Arial Black" size="12.0" />
+        <Font name="Arial Black" size="15.0" />
       </font>
     </Label>
-      <TextField fx:id="login" layoutX="237.0" layoutY="88.0" onAction="#handleLogin" promptText="last.fm username" />
-      <Button fx:id="recommend" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onMouseReleased="#handleRecommend" text="Get Recommendations" />
+      <TextField fx:id="login" layoutX="14.0" layoutY="67.0" onAction="#handleLogin" prefHeight="27.0" prefWidth="386.0" promptText="last.fm username" />
+      <Button fx:id="recommend" layoutX="412.0" layoutY="67.0" mnemonicParsing="false" onMouseReleased="#handleRecommend" prefHeight="27.0" prefWidth="162.0" text="Get Recommendations" />
       <MenuBar prefHeight="29.0" prefWidth="600.0" AnchorPane.rightAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveProfile" text="Save Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#handleLoadProfile" text="Load Profile" />
+                  <MenuItem fx:id="Close" mnemonicParsing="false" onAction="#close" text="Close" />
+                  <MenuItem fx:id="About" mnemonicParsing="false" onAction="#about" text="About" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Goto">
+            <Menu mnemonicParsing="false" text="Go">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#goToSearch" text="Search" />
                 <MenuItem mnemonicParsing="false" onAction="#goToFavorites" text="Favorites" />
@@ -34,5 +37,6 @@
             </Menu>
         </menus>
       </MenuBar>
+      <TableView layoutX="31.0" layoutY="105.0" prefHeight="279.0" prefWidth="532.0" />
   </children>
 </AnchorPane>
