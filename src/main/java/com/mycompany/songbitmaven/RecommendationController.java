@@ -321,7 +321,10 @@ public class RecommendationController extends ControlledScreen implements Initia
         table.getColumns().setAll(nameColumn, artistColumn);
         tracks.clear();
         
-        
+        for(int i = 0; i < recommendations.size(); i++){
+            recommendations.get(i).updateArtist();
+            tracks.add(recommendations.get(i));
+        }
         
         table.setItems(tracks);
     }
