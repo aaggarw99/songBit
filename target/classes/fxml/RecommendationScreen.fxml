@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -9,11 +8,10 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../styles/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
+<AnchorPane id="AnchorPane" prefHeight="428.0" prefWidth="600.0" styleClass="background" stylesheets="@../styles/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
   <children>
     <Label layoutX="14.0" layoutY="40.0" prefHeight="27.0" prefWidth="180.0" text="RECOMMENDATIONS" textAlignment="CENTER">
       <font>
@@ -42,8 +40,8 @@
         </menus>
       </MenuBar>
 
-      <TableView fx:id="table" layoutX="31.0" layoutY="105.0" prefHeight="252.0" prefWidth="532.0" />
-      <Button layoutX="438.0" layoutY="360.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorites" />
+      <TableView fx:id="table" layoutX="14.0" layoutY="148.0" prefHeight="252.0" prefWidth="561.0" />
+      <Button layoutX="14.0" layoutY="107.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" prefHeight="27.0" prefWidth="162.0" text="Add to Favorites" />
 
   </children>
 </AnchorPane>
