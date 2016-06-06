@@ -67,7 +67,7 @@ public class RecommendationController extends ControlledScreen implements Initia
     public String key = "d8dec72bb448436493edcb1dec93e22d";
     public List<SongInfo> recommendations;
     public String user;
-    
+    ArrayList<SongInfo> favorites;
     
     
     @FXML
@@ -82,7 +82,6 @@ public class RecommendationController extends ControlledScreen implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
     }
 
     @Override
@@ -247,6 +246,12 @@ public class RecommendationController extends ControlledScreen implements Initia
         System.out.println(recommendations);
         Singleton.getInstance().getFavorites().addAll(recommendations);
         System.out.println(Singleton.getInstance().getFavorites());
+        favorites = Singleton.getInstance().getFavorites();
+        for(int j = 0; i < favorites.size(); j++){
+            favorites.get(j).updateArtist();
+            tracks.add(favorites.get(j));
+        }
+        loadTable();
     }
     
     public List<SongInfo> songResToInfo(List<SongResponse> res){
@@ -296,10 +301,10 @@ public class RecommendationController extends ControlledScreen implements Initia
         alert.showAndWait();
     }
     // table stuff is below
-    /*
-    ArrayList<SongInfo> favorites;
+    
+    
     @FXML
-    public TableView table;
+    public TableView<SongInfo> table;
     private final ObservableList<SongInfo> tracks =
             FXCollections.observableArrayList(
             );
@@ -323,14 +328,11 @@ public class RecommendationController extends ControlledScreen implements Initia
         
         tracks.clear();
         
-        for(int i = 0; i < recommendations.size(); i++){
-            recommendations.get(i).updateArtist();
-            tracks.add(recommendations.get(i));
-        }
+        
         
         table.setItems(tracks);
     }
-    */
+    
 }
 
 

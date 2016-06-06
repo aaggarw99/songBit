@@ -23,6 +23,7 @@ import javafx.util.Callback;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 
 
 /**
@@ -36,6 +37,12 @@ public class FavoritesController extends ControlledScreen implements Initializab
     // SongInfo song1 = new SongInfo("Bohemian Rhapsody", "Queen", "A Night at the Opera");
     public ArrayList<String> artists;
     public ArrayList<String> albums;
+    
+    @FXML
+    public Button playPreview;
+    
+    
+    
     
     @FXML
     public void handleSaveProfile(){
@@ -63,6 +70,8 @@ public class FavoritesController extends ControlledScreen implements Initializab
     
     @FXML
     public TableColumn artistColumn;*/
+    
+    
     
     @FXML
     public Button refresh;
@@ -153,5 +162,7 @@ public class FavoritesController extends ControlledScreen implements Initializab
         alert.setContentText("Product Completed June 4th, 2016" + "\n" + "by Alex Gajweski, Ashwin Aggarwal, and Luis de Pablo");
         alert.showAndWait();
     }
+    
+    
     
 }

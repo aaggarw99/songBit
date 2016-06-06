@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,10 +24,11 @@
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
+                  <MenuItem fx:id="About" mnemonicParsing="false" onAction="#about" text="About" />
+                  <MenuItem fx:id="Close" mnemonicParsing="false" onAction="#close" text="Close" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveProfile" text="Save Profile" />
                   <MenuItem mnemonicParsing="false" onAction="#handleLoadProfile" text="Load Profile" />
-                  <MenuItem fx:id="Close" mnemonicParsing="false" onAction="#close" text="Close" />
-                  <MenuItem fx:id="About" mnemonicParsing="false" onAction="#about" text="About" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Go">

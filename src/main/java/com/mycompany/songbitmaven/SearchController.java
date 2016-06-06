@@ -167,6 +167,8 @@ public class SearchController extends ControlledScreen implements Initializable 
             System.out.println(e.getMessage());
         }
     }
+    
+    
     private MenuItem Close;
     private MenuItem About;
     @FXML
