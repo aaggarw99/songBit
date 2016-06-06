@@ -244,13 +244,7 @@ public class RecommendationController extends ControlledScreen implements Initia
         }
         System.out.println("Got recommendations");
         System.out.println(recommendations);
-        Singleton.getInstance().getFavorites().addAll(recommendations);
-        System.out.println(Singleton.getInstance().getFavorites());
-        favorites = Singleton.getInstance().getFavorites();
-        for(int j = 0; i < favorites.size(); j++){
-            favorites.get(j).updateArtist();
-            tracks.add(favorites.get(j));
-        }
+
         loadTable();
     }
     
@@ -302,14 +296,18 @@ public class RecommendationController extends ControlledScreen implements Initia
     }
     // table stuff is below
     
+
     
+    
+
+    // ArrayList<SongInfo> favorites;
     @FXML
-    public TableView<SongInfo> table;
-    private final ObservableList<SongInfo> tracks =
-            FXCollections.observableArrayList(
-            );
+    public TableView table;
+
     
     public void loadTable(){
+        ObservableList<SongInfo> tracks =
+            FXCollections.observableArrayList();
         TableColumn nameColumn = new TableColumn("Name");
         nameColumn.setMinWidth(250);
         nameColumn.setCellValueFactory(
@@ -321,11 +319,6 @@ public class RecommendationController extends ControlledScreen implements Initia
         artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
         
         table.getColumns().setAll(nameColumn, artistColumn);
-        // add values to the artists, names, and albums
-        // for loop
-        
-        
-        
         tracks.clear();
         
         
@@ -333,6 +326,11 @@ public class RecommendationController extends ControlledScreen implements Initia
         table.setItems(tracks);
     }
     
+
+    public void handleAddFavorite(){
+        ObservableList<SongInfo> selected = table.getSelectionModel().getSelectedItems();
+        Singleton.getInstance().getFavorites().addAll(selected);
+    }
 }
 
 
