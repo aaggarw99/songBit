@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../styles/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../styles/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.songbitmaven.RecommendationController">
   <children>
     <Label layoutX="14.0" layoutY="40.0" prefHeight="27.0" prefWidth="180.0" text="RECOMMENDATIONS" textAlignment="CENTER">
       <font>
@@ -37,6 +37,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <TableView layoutX="31.0" layoutY="105.0" prefHeight="279.0" prefWidth="532.0" />
+      <TableView fx:id="table" layoutX="31.0" layoutY="105.0" prefHeight="252.0" prefWidth="532.0" />
+      <Button layoutX="438.0" layoutY="360.0" mnemonicParsing="false" onMouseReleased="#handleAddFavorite" text="Add to Favorites" />
   </children>
 </AnchorPane>

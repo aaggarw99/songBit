@@ -245,8 +245,9 @@ public class RecommendationController extends ControlledScreen implements Initia
         }
         System.out.println("Got recommendations");
         System.out.println(recommendations);
-        Singleton.getInstance().getFavorites().addAll(recommendations);
-        System.out.println(Singleton.getInstance().getFavorites());
+        // Singleton.getInstance().getFavorites().addAll(recommendations);
+        // System.out.println(Singleton.getInstance().getFavorites());
+        loadTable();
     }
     
     public List<SongInfo> songResToInfo(List<SongResponse> res){
@@ -296,15 +297,14 @@ public class RecommendationController extends ControlledScreen implements Initia
         alert.showAndWait();
     }
     // table stuff is below
-    /*
-    ArrayList<SongInfo> favorites;
+    
+    // ArrayList<SongInfo> favorites;
     @FXML
     public TableView table;
-    private final ObservableList<SongInfo> tracks =
-            FXCollections.observableArrayList(
-            );
     
     public void loadTable(){
+        ObservableList<SongInfo> tracks =
+            FXCollections.observableArrayList();
         TableColumn nameColumn = new TableColumn("Name");
         nameColumn.setMinWidth(250);
         nameColumn.setCellValueFactory(
@@ -316,11 +316,6 @@ public class RecommendationController extends ControlledScreen implements Initia
         artistColumn.setCellValueFactory(new PropertyValueFactory<SongInfo, String>("artist"));
         
         table.getColumns().setAll(nameColumn, artistColumn);
-        // add values to the artists, names, and albums
-        // for loop
-        
-        
-        
         tracks.clear();
         
         for(int i = 0; i < recommendations.size(); i++){
@@ -330,7 +325,11 @@ public class RecommendationController extends ControlledScreen implements Initia
         
         table.setItems(tracks);
     }
-    */
+    
+    public void handleAddFavorite(){
+        ObservableList<SongInfo> selected = table.getSelectionModel().getSelectedItems();
+        Singleton.getInstance().getFavorites().addAll(selected);
+    }
 }
 
 
